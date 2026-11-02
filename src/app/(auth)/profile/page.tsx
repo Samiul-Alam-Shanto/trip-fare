@@ -18,7 +18,7 @@ const ProfilePage = async () => {
     headers: await headers(), // you need to pass the headers object.
   });
   const user = session?.user;
-
+  if (!user) return null;
   return (
     <main className="max-w-2xl mx-auto px-4 sm:px-6 py-10 sm:py-16 space-y-8">
       {/* Back button */}
