@@ -14,21 +14,11 @@ import Image from "next/image";
 import Link from "next/link";
 
 const ProfilePage = async () => {
-  const { user, isPending } = await auth.api.getSession({
+  const session = await auth.api.getSession({
     headers: await headers(), // you need to pass the headers object.
   });
-  //   console.log(user);
-  if (isPending) {
-    return (
-      <ProgressBar aria-label="Loading" className="w-64" value={100}>
-        <Label>Loading</Label>
-        <ProgressBar.Output />
-        <ProgressBar.Track>
-          <ProgressBar.Fill />
-        </ProgressBar.Track>
-      </ProgressBar>
-    );
-  }
+  const user = session?.user;
+
   return (
     <main className="max-w-2xl mx-auto px-4 sm:px-6 py-10 sm:py-16 space-y-8">
       {/* Back button */}
